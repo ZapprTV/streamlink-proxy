@@ -1,6 +1,7 @@
 import time
 import base64
 import validators
+import re
 from starlette.applications import Starlette
 from starlette.responses import RedirectResponse, JSONResponse, PlainTextResponse
 from starlette.routing import Route
@@ -50,6 +51,7 @@ async def StreamRequest(request):
     requestedURL = request.path_params.get("url")
     if not requestedURL:
         return PlainTextResponse("URL parameter required", status_code=400, headers=headers)
+    requestedURL = re.sub(r'^(https?):/(?!/)', r'\1://', requestedURL)
     if not validators.url(requestedURL):
         return PlainTextResponse("Invalid URL", status_code=400, headers=headers)
 
