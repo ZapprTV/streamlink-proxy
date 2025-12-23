@@ -3,3 +3,8 @@ uvloop
 httptools
 starlette
 streamlink
+validators
+time
+base64
+requests
+urllib
