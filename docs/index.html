@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>streamlink-proxy</title>
+</head>
+<body>
+    <h1>streamlink-proxy</h1>
+    <p><code>streamlink-proxy</code> is a very simple API that translates video links from <a href="https://streamlink.github.io/plugins.html" target="_blank">Streamlink-compatible websites</a> to their direct streaming URL.</p>
+    <p>So, for example, calling the API with the URL <code>https://twitch.tv/ohnePixel</code> will lead to a redirect to <code>https://usher.ttvnw.net/api/channel/hls/ohnepixel.m3u8?player=twitchweb&type=any...</code>, the Twitch stream's direct livestream URL, which can be played by any media player.</p>
+    <p>It's written in Python and built on <a href="https://starlette.dev/" target="_blank">Starlette</a>, <a href="https://uvicorn.dev/" target="_blank">Uvicorn</a>, <a href="https://pypi.org/project/httptools/" target="_blank">httptools</a> and <a href="https://pypi.org/project/uvloop/" target="_blank">uvloop</a>, so it's <i>very</i> fast and lightweight. It's also made faster by its client and server-side caching, which is set to 15 minutes by default. If this isn't enough for some services with shorter expiries, let us know <a href="https://github.com/ZapprTV/streamlink-proxy/issues">via GitHub Issues</a>.</p>
+    <p>You can find out how to self-host it on <a href="https://github.com/ZapprTV/streamlink-proxy#readme">the GitHub repo's README</a>, or use our hosted instance at <code>https://streamlink.zappr.stream</code>. Keep in mind that our instance will only work on links that aren't geoblocked and are available worldwide <i>(unless you specify a HTTP proxy - see more below)</i>.</p><br>
+    <p>To use it, make a request in the following format: <code>https://streamlink.zappr.stream/<b><i>OPTIONS</i></b>/<b><i>URL</i></b></code>
+    <br>where <b><i>URL</i></b> is the URL to "translate" and <b><i>OPTIONS</i></b> is a list of search parameters corresponding to <a href="https://streamlink.github.io/api/session.html#streamlink.session.options.StreamlinkOptions" target="_blank">Streamlink session options</a>. You can also use a value of <i>default</i> to not specify any custom options. It can also be a Base64-encoded list of search parameters, something you'll need to use if any of your option values contain slashes.</p>
+    <p>To get redirected to the stream URL of <code>ohnePixel</code>'s Twitch stream, for example, you would make a request to <code>https://streamlink.zappr.stream/default/https://twitch.tv/ohnePixel</code>.</p>
+    <p>Or, hypothetically, here's how you would get redirected to the stream link of a video from a really slow, geoblocked service: <code>https://streamlink.zappr.stream/aHR0cC1wcm94eT1odHRwOi8vMTIzLjQ1LjY3Ljg5OjgwODAmaHR0cC10aW1lb3V0PTYw/https://goodservice.com/video/2025/10/really-good-video</code> <i>(the options parameter is a Base64-encoding of <code><b>http-proxy=http://123.45.67.89:8080&http-timeout=60</b></code>)</i></p>
+    <p>Enjoy!</p>
+    <br>
+    <a href="https://ko-fi.com/FrancescoRosi" target="_blank">Donate to help keep our hosted instance online :)</a><br>
+    <a href="https://github.com/ZapprTV/streamlink-proxy">View source code on GitHub</a><br><br>
+    A free service brought to you by <a href="https://github.com/ZapprTV" target="_blank">Zappr</a>, developed by <a href="https://francescoro.si" target="_blank">Francesco Rosi</a>
+</body>
+</html>

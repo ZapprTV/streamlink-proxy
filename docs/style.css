@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    width: 100%;
+    height: auto;
+    background: rgb(32, 32, 32);
+    color: white;
+    overflow-wrap: break-word;
+}
+body {
+    width: auto;
+    max-width: 50rem;
+    margin: auto;
+    padding: 2rem;
+    font-family: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+a {
+    color: lightblue;
+}
